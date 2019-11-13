@@ -4,6 +4,7 @@ require 'minitest/autorun'
 require './node.rb'
 require './linkedlist.rb'
 require './midpoint.rb'
+require './circular.rb'
 
 class TestLinkedList < MiniTest::Unit::TestCase
   def setup
@@ -351,5 +352,50 @@ class TestLinkedList < MiniTest::Unit::TestCase
     ll.insert_last 'c'
     ll.insert_last 'd'
     assert_equal 'b', midpoint(ll).data
+  end
+
+  # circular
+  def test_circular_detects_circular_linked_lists
+    ll = LinkedList.new
+    a = Node.new('a')
+    b = Node.new('b')
+    c = Node.new('c')
+
+    ll.head = a
+    a.next_node = b
+    b.next_node = c
+    c.next_node = b
+
+    assert_equal true, circular(ll)
+  end
+
+  # circular
+  def test_circular_detects_circular_linked_lists_linked_at_the_head
+    ll = LinkedList.new
+    a = Node.new('a')
+    b = Node.new('b')
+    c = Node.new('c')
+
+    ll.head = a
+    a.next_node = b
+    b.next_node = c
+    c.next_node = a
+
+    assert_equal true, circular(ll)
+  end
+
+  # circular
+  def test_circular_detects_non_circular_linked_lists
+    ll = LinkedList.new
+    a = Node.new('a')
+    b = Node.new('b')
+    c = Node.new('c')
+
+    ll.head = a
+    a.next_node = b
+    b.next_node = c
+    c.next_node = nil
+
+    assert_equal false, circular(ll)
   end
 end
