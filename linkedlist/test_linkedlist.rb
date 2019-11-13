@@ -5,6 +5,7 @@ require './node.rb'
 require './linkedlist.rb'
 require './midpoint.rb'
 require './circular.rb'
+require './fromlast.rb'
 
 class TestLinkedList < MiniTest::Unit::TestCase
   def setup
@@ -397,5 +398,17 @@ class TestLinkedList < MiniTest::Unit::TestCase
     c.next_node = nil
 
     assert_equal false, circular(ll)
+  end
+
+  # fromlast
+  def test_from_last_returns_the_node_n_elements_from_the_end
+    ll = LinkedList.new
+    ll.insert_last 'a'
+    ll.insert_last 'b'
+    ll.insert_last 'c'
+    ll.insert_last 'd'
+    ll.insert_last 'e'
+
+    assert_equal 'b', from_last(ll, 3).data
   end
 end
