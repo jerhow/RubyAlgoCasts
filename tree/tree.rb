@@ -10,6 +10,8 @@
 # // on the tree class.  Each method should accept a
 # // function that gets called with each element in the tree
 
+require "awesome_print"
+
 class Node
   attr_accessor :data, :children
 
@@ -34,22 +36,29 @@ class Node
 end
 
 class Tree
+  attr_accessor :root
+
   def initialize
     @root = nil
   end
-end
 
-# node = Node.new('a')
-# node.add 'a'
-# node.add 'b'
-# node.add 'c'
-# node.add 'c'
-# node.add 'c'
-# node.add 'd'
-# puts
-# p node.children
-# puts
-# node.remove 'c'
-# puts
-# p node.children
-# puts
+  def traverse_bf(&block)
+    arr = [@root]
+
+    while arr.length > 0
+      node = arr.shift
+      arr = arr + node.children # BF adds the node's children to the END of the array
+      yield(node)
+    end
+  end
+
+  def traverse_df(&block)
+    arr = [@root]
+
+    while arr.length > 0
+      node = arr.shift
+      arr = node.children + arr # DF adds the node's children to the FRONT of the array
+      yield(node)
+    end
+  end
+end
