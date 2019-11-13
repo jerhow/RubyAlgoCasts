@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require './node.rb'
 require './linkedlist.rb'
+require './midpoint.rb'
 
 class TestLinkedList < MiniTest::Unit::TestCase
   def setup
@@ -312,5 +313,43 @@ class TestLinkedList < MiniTest::Unit::TestCase
     assert_equal 12, ll.get_at(1).data
     assert_equal 13, ll.get_at(2).data
     assert_equal 14, ll.get_at(3).data
+  end
+
+  # LinkedList#midpoint
+  def test_midpoint_returns_the_middle_node_of_an_odd_numbered_list_3
+    ll = LinkedList.new
+    ll.insert_last 'a'
+    ll.insert_last 'b'
+    ll.insert_last 'c'
+    assert_equal 'b', midpoint(ll).data
+  end
+
+  # LinkedList#midpoint
+  def test_midpoint_returns_the_middle_node_of_an_odd_numbered_list_5
+    ll = LinkedList.new
+    ll.insert_last 'a'
+    ll.insert_last 'b'
+    ll.insert_last 'c'
+    ll.insert_last 'd'
+    ll.insert_last 'e'
+    assert_equal 'c', midpoint(ll).data
+  end
+
+  # LinkedList#midpoint
+  def test_midpoint_returns_the_middle_node_of_an_even_numbered_list_2
+    ll = LinkedList.new
+    ll.insert_last 'a'
+    ll.insert_last 'b'
+    assert_equal 'a', midpoint(ll).data
+  end
+
+  # LinkedList#midpoint
+  def test_midpoint_returns_the_middle_node_of_an_even_numbered_list_4
+    ll = LinkedList.new
+    ll.insert_last 'a'
+    ll.insert_last 'b'
+    ll.insert_last 'c'
+    ll.insert_last 'd'
+    assert_equal 'b', midpoint(ll).data
   end
 end
