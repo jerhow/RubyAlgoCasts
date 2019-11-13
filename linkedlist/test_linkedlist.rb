@@ -315,7 +315,7 @@ class TestLinkedList < MiniTest::Unit::TestCase
     assert_equal 14, ll.get_at(3).data
   end
 
-  # LinkedList#midpoint
+  # midpoint
   def test_midpoint_returns_the_middle_node_of_an_odd_numbered_list_3
     ll = LinkedList.new
     ll.insert_last 'a'
@@ -324,7 +324,7 @@ class TestLinkedList < MiniTest::Unit::TestCase
     assert_equal 'b', midpoint(ll).data
   end
 
-  # LinkedList#midpoint
+  # midpoint
   def test_midpoint_returns_the_middle_node_of_an_odd_numbered_list_5
     ll = LinkedList.new
     ll.insert_last 'a'
@@ -335,7 +335,7 @@ class TestLinkedList < MiniTest::Unit::TestCase
     assert_equal 'c', midpoint(ll).data
   end
 
-  # LinkedList#midpoint
+  # midpoint
   def test_midpoint_returns_the_middle_node_of_an_even_numbered_list_2
     ll = LinkedList.new
     ll.insert_last 'a'
@@ -343,7 +343,7 @@ class TestLinkedList < MiniTest::Unit::TestCase
     assert_equal 'a', midpoint(ll).data
   end
 
-  # LinkedList#midpoint
+  # midpoint
   def test_midpoint_returns_the_middle_node_of_an_even_numbered_list_4
     ll = LinkedList.new
     ll.insert_last 'a'
