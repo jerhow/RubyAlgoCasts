@@ -2,6 +2,7 @@
 
 require 'minitest/autorun'
 require './tree.rb'
+require './levelwidth.rb'
 
 class TestTree < MiniTest::Unit::TestCase
   def setup
@@ -61,5 +62,28 @@ class TestTree < MiniTest::Unit::TestCase
 
     t.traverse_df { |node| letters << node.data }
     assert_equal ['a', 'b', 'c', 'd'], letters
+  end
+
+  # level_width
+  def test_level_width_test_1
+    root = Node.new(0)
+    root.add 1
+    root.add 2
+    root.add 3
+    root.children[0].add 4
+    root.children[0].add 5
+
+    assert_equal [1, 3, 2], level_width(root)
+  end
+
+  # level_width
+  def test_level_width_test_2
+    root = Node.new(0)
+    root.add 1
+    root.children[0].add 2
+    root.children[0].add 3
+    root.children[0].children[0].add 4
+
+    assert_equal [1, 1, 2, 1], level_width(root)
   end
 end
