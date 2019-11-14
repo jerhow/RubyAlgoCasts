@@ -43,6 +43,8 @@ class Tree
   end
 
   def traverse_bf(&block)
+    # We're using the array as a QUEUE for BFS, which is intuitive
+    # since mentally a queue is a horizontal structure (hence BREADTH)
     arr = [@root]
 
     while arr.length > 0
@@ -53,11 +55,13 @@ class Tree
   end
 
   def traverse_df(&block)
+    # We're using the array as a STACK for DFS, which is intuitive
+    # since mentally a stack is a vertical structure (hence DEPTH)
     arr = [@root]
 
     while arr.length > 0
       node = arr.shift
-      arr = node.children + arr # DF adds the node's children to the FRONT of the array
+      arr = node.children + arr # DF adds the node's children to the BEGINNING of the array
       yield(node)
     end
   end
