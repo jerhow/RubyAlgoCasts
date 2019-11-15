@@ -20,15 +20,40 @@ class Node
     @right = nil
   end
 
+  # Recursive:
+  # def insert(data)
+  #   if data < self.data && self.left
+  #     self.left.insert(data)
+  #   elsif data < self.data
+  #     self.left = Node.new(data)
+  #   elsif data > self.data && self.right
+  #     self.right.insert(data)
+  #   elsif data > self.data
+  #     self.right = Node.new(data)      
+  #   end
+  # end
+
+  # Iterative:
   def insert(data)
-    if data < self.data && self.left
-      self.left.insert(data)
-    elsif data < self.data
-      self.left = Node.new(data)
-    elsif data > self.data && self.right
-      self.right.insert(data)
-    elsif data > self.data
-      self.right = Node.new(data)      
+    previous = nil
+    current = self
+
+    while current
+      previous = current
+
+      if data < current.data
+        current = current.left
+      elsif data > current.data
+        current = current.right
+      end  
+    end
+
+    if !previous
+      self.data = data
+    elsif data < previous.data
+      previous.left = Node.new(data)
+    elsif data > previous.data
+      previous.right = Node.new(data)      
     end
   end
 end
