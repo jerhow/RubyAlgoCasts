@@ -21,8 +21,6 @@ class TestBst < MiniTest::Unit::TestCase
 
   # Node#contains
   def test_contains_returns_node_with_the_same_data
-    skip
-
     node = Node.new(10)
     node.insert 5
     node.insert 15
@@ -37,8 +35,6 @@ class TestBst < MiniTest::Unit::TestCase
 
   # Node#contains
   def test_contains_returns_null_if_value_not_found
-    skip
-
     node = Node.new(10)
     node.insert 5
     node.insert 15

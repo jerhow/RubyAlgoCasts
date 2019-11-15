@@ -20,6 +20,23 @@ class Node
     @right = nil
   end
 
+  # With BSTs, I believe this is more commonly called 'search'.
+  #
+  # Anyway, searching is one of the great things about BSTs.
+  # Each time you recurse to traverse the tree, you discard
+  # half of the nodes in the tree. BST search runs in O(log n) / logarithmic time.
+  def contains(data)
+    return self if data == @data # Match - return the node
+
+    if data < @data && @left
+      @left.contains(data)
+    elsif data > @data && @right
+      @right.contains(data)
+    else
+      nil # We have not found a value and we have no more nodes to descend to, so return nil
+    end
+  end
+
   # Recursive:
   def insert(new_data)
     if new_data < @data && @left
@@ -57,3 +74,20 @@ class Node
   #   end
   # end
 end
+
+# node = Node.new(10)
+# node.insert 5
+# node.insert 15
+# node.insert 20
+# node.insert 0
+# node.insert -5
+# node.insert 3
+
+# three = node.left.left.right
+# # puts
+# # p node
+# puts
+# p three
+# puts
+# p node.contains(3)
+# puts
