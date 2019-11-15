@@ -14,13 +14,13 @@ class TestBst < MiniTest::Unit::TestCase
     node.insert 15
     node.insert 17
 
-    assert_equal 5, node.left.data
-    assert_equal 15, node.right.data
-    assert_equal 17, node.right.right.data
+    assert_equal 5, node.left.key
+    assert_equal 15, node.right.key
+    assert_equal 17, node.right.right.key
   end
 
   # Node#contains
-  def test_contains_returns_node_with_the_same_data
+  def test_contains_returns_node_with_the_same_key
     node = Node.new(10)
     node.insert 5
     node.insert 15

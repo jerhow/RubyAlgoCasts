@@ -1,21 +1,21 @@
 # // --- Directions
 # // 1) Implement the Node class to create
 # // a binary search tree.  The constructor
-# // should initialize values 'data', 'left',
+# // should initialize values 'key', 'left',
 # // and 'right'.
 # // 2) Implement the 'insert' method for the
 # // Node class.  Insert should accept an argument
-# // 'data', then create an insert a new node
+# // 'key', then create an insert a new node
 # // at the appropriate location in the tree.
 # // 3) Implement the 'contains' method for the Node
-# // class.  Contains should accept a 'data' argument
+# // class.  Contains should accept a 'key' argument
 # // and return the Node in the tree with the same value.
 
 class Node
-  attr_accessor :data, :left, :right
+  attr_accessor :key, :left, :right
 
-  def initialize(data)
-    @data = data
+  def initialize(key)
+    @key = key
     @left = nil
     @right = nil
   end
@@ -25,52 +25,52 @@ class Node
   # Anyway, searching is one of the great things about BSTs.
   # Each time you recurse to traverse the tree, you discard
   # half of the nodes in the tree. BST search runs in O(log n) / logarithmic time.
-  def contains(data)
-    return self if data == @data # Match - return the node
+  def contains(key)
+    return self if key == @key # Match - return the node
 
-    if data < @data && @left
-      @left.contains(data)
-    elsif data > @data && @right
-      @right.contains(data)
+    if key < @key && @left
+      @left.contains(key)
+    elsif key > @key && @right
+      @right.contains(key)
     else
       nil # We have not found a value and we have no more nodes to descend to, so return nil
     end
   end
 
   # Recursive:
-  def insert(new_data)
-    if new_data < @data && @left
-      @left.insert(new_data)
-    elsif new_data < @data
-      @left = Node.new(new_data)
-    elsif new_data > @data && @right
-      @right.insert(new_data)
-    elsif new_data > @data
-      @right = Node.new(new_data)      
+  def insert(new_key)
+    if new_key < @key && @left
+      @left.insert(new_key)
+    elsif new_key < @key
+      @left = Node.new(new_key)
+    elsif new_key > @key && @right
+      @right.insert(new_key)
+    elsif new_key > @key
+      @right = Node.new(new_key)
     end
   end
 
   # Iterative:
-  # def insert(data)
+  # def insert(key)
   #   previous = nil
   #   current = self
 
   #   while current
   #     previous = current
 
-  #     if data < current.data
+  #     if key < current.key
   #       current = current.left
-  #     elsif data > current.data
+  #     elsif key > current.key
   #       current = current.right
-  #     end  
+  #     end
   #   end
 
   #   if !previous
-  #     self.data = data
-  #   elsif data < previous.data
-  #     previous.left = Node.new(data)
-  #   elsif data > previous.data
-  #     previous.right = Node.new(data)      
+  #     self.key = key
+  #   elsif key < previous.key
+  #     previous.left = Node.new(key)
+  #   elsif key > previous.key
+  #     previous.right = Node.new(key)
   #   end
   # end
 end
