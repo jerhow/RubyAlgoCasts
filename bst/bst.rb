@@ -75,19 +75,20 @@ class Node
   # end
 end
 
-# node = Node.new(10)
-# node.insert 5
-# node.insert 15
-# node.insert 20
-# node.insert 0
-# node.insert -5
-# node.insert 3
+def is_valid?(node, min = nil, max = nil)
+  # Walk through this solution with a diagram to avoid brain explosion
 
-# three = node.left.left.right
-# # puts
-# # p node
-# puts
-# p three
-# puts
-# p node.contains(3)
-# puts
+  # Left side value check
+  return false if max && node.key > max
+  
+  # Right side value check
+  return false if min && node.key < min
+  
+  # Left side traversal
+  return false if node.left && !is_valid?(node.left, min, node.key)
+  
+  # Right side traversal
+  return false if node.right && !is_valid?(node.right, node.key, max)
+
+  true
+end

@@ -45,4 +45,28 @@ class TestBst < MiniTest::Unit::TestCase
 
     assert_nil node.contains(9999)
   end
+
+  # is_valid?
+  def test_is_valid_recognizes_a_valid_BST
+    node = Node.new(10)
+    node.insert 5
+    node.insert 15
+    node.insert 0
+    node.insert 20
+
+    assert_equal true, is_valid?(node)
+  end
+
+  # is_valid?
+  def test_is_valid_recognizes_an_invalid_BST
+    node = Node.new(10)
+    node.insert 5
+    node.insert 15
+    node.insert 0
+    node.insert 20
+    node.left.left.right = Node.new(999)
+    # node.right.right.left = Node.new(-999)
+
+    assert_equal false, is_valid?(node)
+  end
 end
